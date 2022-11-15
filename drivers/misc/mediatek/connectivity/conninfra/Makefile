@@ -160,7 +160,7 @@ $(MODULE_NAME)-objs += debug_utility/metlog/metlog.o
 ###############################################################################
 # test
 ###############################################################################
-ifneq ($(TARGET_BUILD_VARIANT), user)
+ifeq ($(TARGET_BUILD_VARIANT), dbg)
 ccflags-y += -D CFG_CONNINFRA_UT_SUPPORT
 
 ccflags-y += -I$(src)/test/include

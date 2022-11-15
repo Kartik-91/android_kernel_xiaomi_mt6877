@@ -22,6 +22,8 @@ ifneq ($(filter yes, $(_MTK_PLAT_MT6885_EMULATION)),)
 endif
 endif
 
+ccflags-y += -Wno-error
+
 ifndef TOP
     TOP := $(srctree)/..
 endif
@@ -68,11 +70,13 @@ endif
 # ---------------------------------------------------
 # Include Path
 # ---------------------------------------------------
-CONN_INFRA_SRC := $(TOP)/vendor/mediatek/kernel_modules/connectivity/conninfra
-WMT_SRC := $(TOP)/vendor/mediatek/kernel_modules/connectivity/common
+CONN_INFRA_SRC := $(srctree)/drivers/misc/mediatek/connectivity/conninfra
+WMT_SRC := $(srctree)/drivers/misc/mediatek/connectivity/common
 BTIF_SRC := $(srctree)/drivers/misc/mediatek/btif
 ccflags-y += -I$(srctree)/drivers/misc/mediatek/connectivity/common
 ccflags-y += -I$(CONN_INFRA_SRC)/include
+ccflags-y += -I$(CONN_INFRA_SRC)/base/include
+ccflags-y += -I$(CONN_INFRA_SRC)/conf/include
 ccflags-y += -I$(CONN_INFRA_SRC)/debug_utility/include
 ccflags-y += -I$(CONN_INFRA_SRC)/debug_utility/metlog
 ccflags-y += -I$(CONN_INFRA_SRC)/debug_utility/
@@ -94,7 +98,7 @@ endif
 # Objects List
 # ---------------------------------------------------
 MODULE_NAME := bt_drv
-obj-m += $(MODULE_NAME).o
+obj-y += $(MODULE_NAME).o
 
 #PLAT_DIR  := plat/$(MTK_PLATFORM)
 

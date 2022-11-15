@@ -12,6 +12,7 @@
 #include "btmtk_define.h"
 #include "btmtk_chip_if.h"
 #include "conninfra.h"
+#include "conninfra_conf.h"
 #include "connsys_debug_utility.h"
 #include "metlog.h"
 
